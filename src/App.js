@@ -28,12 +28,18 @@ function App() {
   const generateLogSentence = (type) => {
     if(type?.includes("cpu")) {
       const server_number = type?.split("_")[1];
-      const limit = type?.split("_")[0]?.slice(3);
+      let limit = type?.split("_")[0]?.slice(3);
+
+      limit = limit === "15" ? 2 : 4;
 
       return `Server ${server_number} exceeds %${limit} CPU utilization`;
     } else {
       const server_number = type?.split("_")[1];
-      const limit = type?.split("_")[0]?.slice(9, 10);
+      let limit = type?.split("_")[0]?.slice(9, 10);
+
+      console.log(limit)
+
+      limit = limit === "1" ? 6 : 3;
 
       return `Server ${server_number} received at least ${limit}MB data`;
     }
